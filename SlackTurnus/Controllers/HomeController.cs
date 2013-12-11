@@ -22,5 +22,10 @@ namespace SlackTurnus.Controllers
 				{"Martin L", 0},
 			});
 		}
+
+		public ActionResult Accept()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

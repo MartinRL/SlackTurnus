@@ -11,10 +11,11 @@
     </head>
     <body>
         <div class="jumbotron">
-            @foreach (DictionaryEntry keyItem in Model)
+            @foreach (DictionaryEntry dictionaryEntry in Model)
             {
-                <div>@keyItem.Key : @keyItem.Value</div>
+                <div>@dictionaryEntry.Key</div>
             }
+            <input type="button" value="Acceptér" onclick="location.href='@Url.Action("Accept", "Home" )'" />
         </div>
     </body>
 </html>
