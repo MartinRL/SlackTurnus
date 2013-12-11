@@ -1,4 +1,7 @@
-﻿@model System.Collections.Specialized.OrderedDictionary
+﻿@using System.Collections
+@using System.Collections.Specialized
+
+@model OrderedDictionary
 
 <html>
     <head>
@@ -8,7 +11,10 @@
     </head>
     <body>
         <div class="jumbotron">
-            @Model.GetType().ToString()
+            @foreach (DictionaryEntry keyItem in Model)
+            {
+                <div>@keyItem.Key : @keyItem.Value</div>
+            }
         </div>
     </body>
 </html>

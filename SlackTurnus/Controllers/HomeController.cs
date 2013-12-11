@@ -11,7 +11,16 @@ namespace SlackTurnus.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View(new OrderedDictionary());
+			return View(new OrderedDictionary
+			{
+				{"Niels H", 0},
+				{"Kim", 0},
+				{"Michael", 0},
+				{"Niels K", 0},
+				{"Christian M", 0},
+				{"Henrik", 0},
+				{"Martin L", 0},
+			});
 		}
 	}
 }
