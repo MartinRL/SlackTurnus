@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,7 +11,7 @@ namespace SlackTurnus.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			return View(new OrderedDictionary());
 		}
 	}
 }
