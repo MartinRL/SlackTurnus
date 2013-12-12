@@ -5,6 +5,11 @@ using Newtonsoft.Json;
 
 namespace SlackTurnus.DomainModel
 {
+	public interface IGetSlackTurnus
+	{
+		IOrderedDictionary Execute();
+	}
+
 	public class GetSlackTurnus : IGetSlackTurnus
 	{
 		public IOrderedDictionary Execute()
