@@ -41,6 +41,7 @@ namespace SlackTurnus.Controllers
 		{
 			string slackersAsJson;
 
+			// 2do: DI http://stackoverflow.com/questions/6390608/structuremap-is-not-disposing-data-context-when-using-httpcontextscoped
 			using (var streamReader = new StreamReader(HostingEnvironment.MapPath("~/DomainModel/slackTurnus.json")))
 			{
 				slackersAsJson = streamReader.ReadToEnd();
