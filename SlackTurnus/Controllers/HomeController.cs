@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace SlackTurnus.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly IGetSlackTurnus _getSlackTurnus;
+
 		public HomeController(IGetSlackTurnus getSlackTurnus)
 		{
+			_getSlackTurnus = getSlackTurnus;
 		}
 
 		public ActionResult Index()
 		{
-			return View(new OrderedDictionary
-			{
-				{"Niels H", 0},
-				{"Kim", 0},
-				{"Michael", 0},
-				{"Niels K", 0},
-				{"Christian M", 0},
-				{"Henrik", 0},
-				{"Martin L", 0},
-			});
+			return View(_getSlackTurnus.Execute());
 		}
 
 		public ActionResult Accept()
@@ -42,7 +39,14 @@ namespace SlackTurnus.Controllers
 	{
 		public IOrderedDictionary Execute()
 		{
-			throw new NotImplementedException();
+			string slackersAsJson;
+
+			using (var streamReader = new StreamReader(HostingEnvironment.MapPath("~/DomainModel/slackTurnus.json")))
+			{
+				slackersAsJson = streamReader.ReadToEnd();
+			}
+
+			return JsonConvert.DeserializeObject<OrderedDictionary>(slackersAsJson);
 		}
 	}
 }
