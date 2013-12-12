@@ -35,5 +35,22 @@ namespace SlackTurnus.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult Skip()
+		{
+			var slackTurnus = _getSlackTurnus.Execute();
+
+			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().Last();
+
+			firstInLineSlacker.Value = (long)firstInLineSlacker.Value + 1;
+
+			slackTurnus.Remove(firstInLineSlacker.Key);
+
+			slackTurnus.Insert(slackTurnus.Count - 1, firstInLineSlacker.Key, firstInLineSlacker.Value);
+
+			_updateSlackTurnus.Execute(slackTurnus);
+
+			return RedirectToAction("Index");
+		}
 	}
 }
