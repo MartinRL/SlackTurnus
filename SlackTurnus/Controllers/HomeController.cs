@@ -21,7 +21,7 @@ namespace SlackTurnus.Controllers
 			return View(_getSlackTurnus.Execute());
 		}
 
-		public ActionResult Accept()
+		public ActionResult Next()
 		{
 			throw new NotImplementedException();
 		}
