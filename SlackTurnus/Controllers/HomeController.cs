@@ -29,7 +29,7 @@ namespace SlackTurnus.Controllers
 
 			slackTurnus.Remove(firstInLineSlacker.Key);
 
-			slackTurnus.Insert(0, firstInLineSlacker.Key, firstInLineSlacker.Value);
+			slackTurnus.Insert(unchecked((int)(long)firstInLineSlacker.Value), firstInLineSlacker.Key, 0);
 
 			_updateSlackTurnus.Execute(slackTurnus);
 
