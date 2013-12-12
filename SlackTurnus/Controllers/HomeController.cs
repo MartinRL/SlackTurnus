@@ -9,6 +9,10 @@ namespace SlackTurnus.Controllers
 {
 	public class HomeController : Controller
 	{
+		public HomeController(IGetSlackTurnus getSlackTurnus)
+		{
+		}
+
 		public ActionResult Index()
 		{
 			return View(new OrderedDictionary
@@ -24,6 +28,19 @@ namespace SlackTurnus.Controllers
 		}
 
 		public ActionResult Accept()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	public interface IGetSlackTurnus
+	{
+		IOrderedDictionary Execute();
+	}
+
+	public class GetSlackTurnus : IGetSlackTurnus
+	{
+		public IOrderedDictionary Execute()
 		{
 			throw new NotImplementedException();
 		}

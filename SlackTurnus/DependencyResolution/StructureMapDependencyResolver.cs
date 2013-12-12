@@ -20,9 +20,6 @@ using StructureMap;
 
 namespace SlackTurnus.DependencyResolution
 {
-    /// <summary>
-    /// The structure map dependency resolver.
-    /// </summary>
     public class StructureMapDependencyResolver : StructureMapDependencyScope, IDependencyResolver
     {
         #region Constructors and Destructors

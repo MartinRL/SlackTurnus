@@ -24,15 +24,11 @@ namespace SlackTurnus.DependencyResolution
 	{
 		public static IContainer Initialize()
 		{
-			ObjectFactory.Initialize(x =>
+			ObjectFactory.Initialize(x => x.Scan(scan =>
 			{
-				x.Scan(scan =>
-				{
-					scan.TheCallingAssembly();
-					scan.WithDefaultConventions();
-				});
-				//                x.For<IExample>().Use<Example>();
-			});
+				scan.TheCallingAssembly();
+				scan.WithDefaultConventions();
+			}));
 			return ObjectFactory.Container;
 		}
 	}

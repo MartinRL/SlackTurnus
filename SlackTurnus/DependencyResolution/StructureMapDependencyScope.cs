@@ -24,9 +24,6 @@ using StructureMap;
 
 namespace SlackTurnus.DependencyResolution
 {
-    /// <summary>
-    /// The structure map dependency scope.
-    /// </summary>
     public class StructureMapDependencyScope : ServiceLocatorImplBase, IDependencyScope
     {
         #region Constants and Fields
