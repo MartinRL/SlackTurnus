@@ -18,18 +18,18 @@ namespace SlackTurnus.Controllers
 
 		public ActionResult Index()
 		{
-			return View(_getSlackTurnus.Execute());
+			return View(_getSlackTurnus.Execute().Cast<DictionaryEntry>().Reverse());
 		}
 
 		public ActionResult Next()
 		{
 			var slackTurnus = _getSlackTurnus.Execute();
 
-			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().Last();
+			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().First();
 
 			slackTurnus.Remove(firstInLineSlacker.Key);
 
-			slackTurnus.Insert(unchecked((int)(long)firstInLineSlacker.Value), firstInLineSlacker.Key, 0);
+			slackTurnus.Insert(index: slackTurnus.Count - unchecked((int)(long)firstInLineSlacker.Value), key: firstInLineSlacker.Key, value: 0);
 
 			_updateSlackTurnus.Execute(slackTurnus);
 
@@ -40,13 +40,30 @@ namespace SlackTurnus.Controllers
 		{
 			var slackTurnus = _getSlackTurnus.Execute();
 
-			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().Last();
+			var slackTurnusAsDictionaryEntries = slackTurnus.Cast<DictionaryEntry>().ToList();
+
+			var firstInLineSlacker = slackTurnusAsDictionaryEntries.First();
 
 			firstInLineSlacker.Value = (long)firstInLineSlacker.Value + 1;
 
-			slackTurnus.Remove(firstInLineSlacker.Key);
 
-			slackTurnus.Insert(slackTurnus.Count - 1, firstInLineSlacker.Key, firstInLineSlacker.Value);
+//			var slackerOfIndex = slackTurnusAsDictionaryEntries.Reverse().First(slacker => (long)slacker.Value == 0).Key;
+			/*int index;
+
+			if (slackTurnusAsDictionaryEntries.Any(slacker => (long)slacker.Value > 0))
+			{
+				index = slackTurnusAsDictionaryEntries.ToList().FindIndex(slacker => (long) slacker.Value > 0) - 1;
+			}
+			else
+			{
+				index = slackTurnus.Count - 1;
+			}
+*/
+			var index = slackTurnusAsDictionaryEntries.FindIndex(slacker => (long)slacker.Value == 0);
+
+			slackTurnus.Remove(firstInLineSlacker.Key);
+			
+			slackTurnus.Insert(index, firstInLineSlacker.Key, firstInLineSlacker.Value);
 
 			_updateSlackTurnus.Execute(slackTurnus);
 
