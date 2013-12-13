@@ -10,7 +10,10 @@
     </head>
     <body>
         <table>
-            
+            <tr>
+                <th>Primær</th>
+                <th>Sekundær</th>
+            </tr>
             @foreach (Tuple<string, string> slackerPair in Model.PrimaryAndSecondarySlackers)
             {
                 <tr>
