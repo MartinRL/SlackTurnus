@@ -1,6 +1,6 @@
-﻿@using System.Collections
+﻿@using SlackTurnus.ViewModel
 
-@model IEnumerable<DictionaryEntry>
+@model HomeViewModel
 
 <html>
     <head>
@@ -9,13 +9,24 @@
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="jumbotron">
-            @foreach (DictionaryEntry dictionaryEntry in Model)
+        <table>
+            
+            @foreach (Tuple<string, string> slackerPair in Model.PrimaryAndSecondarySlackers)
             {
-                <div>@dictionaryEntry.Key</div>
-            }
-            <input type="button" value="Næste" onclick="location.href='@Url.Action("Next", "Home" )'" />
-            <input type="button" value="Spring over" onclick="location.href='@Url.Action("Skip", "Home" )'" />
-        </div>
+                <tr>
+                    <td>@slackerPair.Item1</td>
+                    <td>@slackerPair.Item2</td>
+                </tr>
+            }<tr>
+                 <td>
+                     <input type="button" value="Næste" onclick=" location.href = '@Url.Action("NextPrimary", "Home")' " />
+                     <input type="button" value="Spring over" onclick=" location.href = '@Url.Action("SkipPrimary", "Home")' " />
+                 </td>
+                 <td>
+                     <input type="button" value="Næste" onclick=" location.href = '@Url.Action("NextSecondary", "Home")' " />
+                     <input type="button" value="Spring over" onclick=" location.href = '@Url.Action("SkipSecondary", "Home")' " />
+                 </td>
+             </tr>
+        </table>
     </body>
 </html>
