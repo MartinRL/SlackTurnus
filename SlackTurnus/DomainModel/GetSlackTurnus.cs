@@ -7,12 +7,12 @@ namespace SlackTurnus.DomainModel
 {
 	public interface IGetSlackTurnus
 	{
-		IOrderedDictionary Execute();
+		SlackTurnus Execute();
 	}
 
 	public class GetSlackTurnus : IGetSlackTurnus
 	{
-		public IOrderedDictionary Execute()
+		public SlackTurnus Execute()
 		{
 			string slackersAsJson;
 
@@ -22,7 +22,7 @@ namespace SlackTurnus.DomainModel
 				slackersAsJson = streamReader.ReadToEnd();
 			}
 
-			return JsonConvert.DeserializeObject<OrderedDictionary>(slackersAsJson);
+			return JsonConvert.DeserializeObject<SlackTurnus>(slackersAsJson);
 		}
 	}
 }

@@ -25,11 +25,7 @@ namespace SlackTurnus.Controllers
 		{
 			var slackTurnus = _getSlackTurnus.Execute();
 
-			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().First();
-
-			slackTurnus.Remove(firstInLineSlacker.Key);
-
-			slackTurnus.Insert(index: slackTurnus.Count - unchecked((int)(long)firstInLineSlacker.Value), key: firstInLineSlacker.Key, value: 0);
+			slackTurnus.Next();
 
 			_updateSlackTurnus.Execute(slackTurnus);
 
@@ -41,7 +37,6 @@ namespace SlackTurnus.Controllers
 			var slackTurnus = _getSlackTurnus.Execute();
 
 			var firstInLineSlacker = slackTurnus.Cast<DictionaryEntry>().First();
-			
 
 			var numberOfSkips = (long) slackTurnus[0] + 1;
 			slackTurnus[0] = numberOfSkips;

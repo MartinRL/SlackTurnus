@@ -182,6 +182,7 @@
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DomainModel\GetSlackTurnus.cs" />
+    <Compile Include="DomainModel\SlackTurnus.cs" />
     <Compile Include="DomainModel\UpdateSlackTurnus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
