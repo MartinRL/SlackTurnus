@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using StructureMap;
 
 namespace SlackTurnus
 {
@@ -14,5 +15,10 @@ namespace SlackTurnus
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+		protected void Application_EndRequest()
+		{
+			ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+		}
     }
 }

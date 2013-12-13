@@ -7,15 +7,15 @@ namespace SlackTurnus.DomainModel
 {
 	public interface IUpdateSlackTurnus
 	{
-		void Execute(IOrderedDictionary slackTurnus);
+		void Execute(IOrderedDictionary slackTurnus, string turnus);
 	}
 
 	public class UpdateSlackTurnus : IUpdateSlackTurnus
 	{
-		public void Execute(IOrderedDictionary slackTurnus)
+		public void Execute(IOrderedDictionary slackTurnus, string turnus)
 		{
 			// 2do: DI
-			using (var streamWriter = new StreamWriter(HostingEnvironment.MapPath("~/DomainModel/slackTurnus.json")))
+			using (var streamWriter = new StreamWriter(HostingEnvironment.MapPath("~/DomainModel/" + turnus + ".json")))
 			{
 				streamWriter.Write(JsonConvert.SerializeObject(slackTurnus));
 			}
