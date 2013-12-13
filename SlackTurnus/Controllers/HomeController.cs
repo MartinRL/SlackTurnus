@@ -30,6 +30,7 @@ namespace SlackTurnus.Controllers
 			return View(new HomeViewModel(slackerNamePairs.Reverse()));
 		}
 
+		// 2do: remove dupes
 		public ActionResult NextPrimary()
 		{
 			var slackTurnus = _getSlackTurnus.Execute(PRIMARY_SLACKER_TURNUS);
