@@ -166,7 +166,9 @@
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DomainModel\GetSlackTurnus.cs" />
-    <None Include="DomainModel\secondary_SlackerTurnus.json" />
+    <None Include="DomainModel\secondarySlackerTurnus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="DomainModel\SlackTurnus.cs" />
     <Compile Include="DomainModel\UpdateSlackTurnus.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,7 +185,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="DomainModel\primarySlackerTurnus.json" />
+    <Content Include="DomainModel\primarySlackerTurnus.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
