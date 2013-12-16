@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using SlackTurnus.DomainModel;
 using SlackTurnus.ViewModel;
 
@@ -30,16 +31,25 @@ namespace SlackTurnus.Controllers
 			return View(new HomeViewModel(slackerNamePairs.Reverse()));
 		}
 
-		// 2do: remove dupes
-		public ActionResult NextPrimary()
+		private ActionResult Next(string turnus)
 		{
-			var slackTurnus = _getSlackTurnus.Execute(PRIMARY_SLACKER_TURNUS);
+			var slackTurnus = _getSlackTurnus.Execute(turnus);
 
 			slackTurnus.Next();
 
-			_updateSlackTurnus.Execute(slackTurnus, PRIMARY_SLACKER_TURNUS);
+			_updateSlackTurnus.Execute(slackTurnus, turnus);
 
 			return RedirectToAction("Index");
+		}
+		
+		public ActionResult NextPrimary()
+		{
+			return Next(PRIMARY_SLACKER_TURNUS);
+		}
+
+		public ActionResult NextSecondary()
+		{
+			return Next(SECONDARY_SLACKER_TURNUS);
 		}
 
 		public ActionResult SkipPrimary()
@@ -49,17 +59,6 @@ namespace SlackTurnus.Controllers
 			slackTurnus.Skip();
 
 			_updateSlackTurnus.Execute(slackTurnus, PRIMARY_SLACKER_TURNUS);
-
-			return RedirectToAction("Index");
-		}
-
-		public ActionResult NextSecondary()
-		{
-			var slackTurnus = _getSlackTurnus.Execute(SECONDARY_SLACKER_TURNUS);
-
-			slackTurnus.Next();
-
-			_updateSlackTurnus.Execute(slackTurnus, SECONDARY_SLACKER_TURNUS);
 
 			return RedirectToAction("Index");
 		}
