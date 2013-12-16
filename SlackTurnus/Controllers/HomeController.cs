@@ -52,26 +52,25 @@ namespace SlackTurnus.Controllers
 			return Next(SECONDARY_SLACKER_TURNUS);
 		}
 
-		public ActionResult SkipPrimary()
+		private ActionResult Skip(string turnus)
 		{
-			var slackTurnus = _getSlackTurnus.Execute(PRIMARY_SLACKER_TURNUS);
+			var slackTurnus = _getSlackTurnus.Execute(turnus);
 
 			slackTurnus.Skip();
 
-			_updateSlackTurnus.Execute(slackTurnus, PRIMARY_SLACKER_TURNUS);
+			_updateSlackTurnus.Execute(slackTurnus, turnus);
 
 			return RedirectToAction("Index");
 		}
 
+		public ActionResult SkipPrimary()
+		{
+			return Skip(PRIMARY_SLACKER_TURNUS);
+		}
+
 		public ActionResult SkipSecondary()
 		{
-			var slackTurnus = _getSlackTurnus.Execute(SECONDARY_SLACKER_TURNUS);
-
-			slackTurnus.Skip();
-
-			_updateSlackTurnus.Execute(slackTurnus, SECONDARY_SLACKER_TURNUS);
-
-			return RedirectToAction("Index");
+			return Skip(SECONDARY_SLACKER_TURNUS);
 		}
 	}
 }
